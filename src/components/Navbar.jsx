@@ -1,14 +1,21 @@
 import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import {
+  BellIcon,
+  MenuIcon,
+  XIcon,
+  MailIcon,
+  CalendarIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/outline";
 import { PlusSmIcon } from "@heroicons/react/solid";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export const MainNavbar = () => {
+export const Navbar = () => {
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -30,40 +37,34 @@ export const MainNavbar = () => {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                    alt="Workflow"
+                    src="/navbar/src/assets/logo.png"
+                    alt="Worksuite"
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
+                    src="/navbar/src/assets/logo.png"
                     alt="Workflow"
                   />
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <a
-                    href="#"
+                    href="/"
                     className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
-                    Dashboard
+                    Home
                   </a>
                   <a
-                    href="#"
+                    href="/meetings"
                     className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
-                    Team
+                    Meetings
                   </a>
                   <a
-                    href="#"
+                    href="/rooms"
                     className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                   >
-                    Projects
-                  </a>
-                  <a
-                    href="#"
-                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                  >
-                    Calendar
+                    Rooms
                   </a>
                 </div>
               </div>
@@ -71,13 +72,13 @@ export const MainNavbar = () => {
                 <div className="flex-shrink-0">
                   <button
                     type="button"
-                    className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm invisible md: visible hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     <PlusSmIcon
                       className="-ml-1 mr-2 h-5 w-5"
                       aria-hidden="true"
                     />
-                    <span>New Job</span>
+                    <span>Invite friends</span>
                   </button>
                 </div>
                 <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
@@ -85,8 +86,22 @@ export const MainNavbar = () => {
                     type="button"
                     className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
+                    <span className="sr-only">View Calendar</span>
+                    <CalendarIcon className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
                     <span className="sr-only">View notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    <span className="sr-only">View Messages</span>
+                    <MailIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
 
                   {/* Profile dropdown */}
@@ -114,20 +129,20 @@ export const MainNavbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/profile"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              Your Profile
+                              Profile
                             </a>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="/seetings"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
@@ -140,7 +155,7 @@ export const MainNavbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="#"
+                              href="sign out"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
@@ -150,9 +165,19 @@ export const MainNavbar = () => {
                             </a>
                           )}
                         </Menu.Item>
+                        <ChevronDownIcon
+                          className="h-6 w-6"
+                          aria-hidden="true"
+                        />
                       </Menu.Items>
                     </Transition>
                   </Menu>
+                  <button
+                    type="button"
+                    className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  >
+                    <span className="sr-only">View Messages</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -162,28 +187,22 @@ export const MainNavbar = () => {
             <div className="pt-2 pb-3 space-y-1">
               {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
               <a
-                href="#"
+                href="/"
                 className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
               >
-                Dashboard
+                Home
               </a>
               <a
-                href="#"
+                href="/meetings"
                 className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
               >
-                Team
+                Meetings
               </a>
               <a
-                href="#"
+                href="/rooms"
                 className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
               >
-                Projects
-              </a>
-              <a
-                href="#"
-                className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
-              >
-                Calendar
+                Rooms
               </a>
             </div>
             <div className="pt-4 pb-3 border-t border-gray-200">
@@ -197,10 +216,10 @@ export const MainNavbar = () => {
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-gray-800">
-                    Tom Cook
+                    Mehr
                   </div>
                   <div className="text-sm font-medium text-gray-500">
-                    tom@example.com
+                    mehrnoosh.beniss@gmail.com
                   </div>
                 </div>
                 <button
@@ -213,22 +232,23 @@ export const MainNavbar = () => {
               </div>
               <div className="mt-3 space-y-1">
                 <a
-                  href="#"
+                  href="profile"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 sm:px-6"
                 >
-                  Your Profile
+                  Profile
                 </a>
                 <a
-                  href="#"
+                  href="/settings"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 sm:px-6"
                 >
                   Settings
                 </a>
                 <a
-                  href="#"
+                  href="/Log out
+"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 sm:px-6"
                 >
-                  Sign out
+                  Log out
                 </a>
               </div>
             </div>
